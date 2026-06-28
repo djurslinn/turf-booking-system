@@ -1,58 +1,96 @@
-# TurfZone
+# TurfZone Booking and Management System
 
-TurfZone is a web-based turf booking and management system. It provides a seamless platform for customers to browse, book, and manage sports turf slots, while allowing turf owners to list their venues, manage available slots, and track bookings. It also includes an admin dashboard for overall management.
+TurfZone is a comprehensive web-based platform designed to facilitate the booking and management of sports turfs. It serves as a bridge between turf owners and customers, providing a centralized system for listing venues, scheduling slots, and managing reservations.
 
-## 🚀 Features
+## System Architecture
 
-- **Multi-Role System:** Support for Customers, Turf Owners, and Admins.
-- **Customer Portal:** Browse available turfs, book slots, view booking history, and manage profile.
-- **Owner Dashboard:** Register as an owner, add and manage turf details, create time slots, and track customer bookings.
-- **Admin Dashboard:** Centralized control over the platform's users and listings.
-- **Google Authentication:** Users can easily sign up and log in using their Google account.
-- **Email Notifications:** Automated email alerts for registration success, booking confirmations, and password resets (powered by PHPMailer).
+The following diagram illustrates the high-level interaction between the system's primary actors and the core components:
 
-## 🛠️ Tech Stack
+```mermaid
+graph TD
+    %% Actors
+    Customer([Customer])
+    Owner([Turf Owner])
+    Admin([System Admin])
 
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** PHP
-- **Database:** MySQL
+    %% Core System
+    subgraph TurfZone Web Application
+        Auth[Authentication Module]
+        Booking[Booking Engine]
+        Dashboard[User & Admin Dashboards]
+    end
 
-## ⚙️ Prerequisites
+    %% External Services
+    DB[(MySQL Database)]
+    GoogleAPI[Google OAuth 2.0]
+    SMTP[SMTP Mail Server]
 
-To run this project locally, you will need a local web server environment like [XAMPP](https://www.apachefriends.org/download.html), WAMP, or MAMP installed on your machine.
+    %% Relationships
+    Customer -->|Login / Register| Auth
+    Customer -->|Search & Book Slots| Booking
+    
+    Owner -->|Login / Register| Auth
+    Owner -->|Manage Listings| Dashboard
+    
+    Admin -->|System Oversight| Dashboard
 
-## 💻 Local Setup & Installation
+    Auth -->|Fetch Profile| GoogleAPI
+    Auth -->|Password Reset| SMTP
+    Booking -->|Confirmation Emails| SMTP
+    
+    Auth <--> DB
+    Booking <--> DB
+    Dashboard <--> DB
+```
 
-Follow these steps to get your development environment running:
+## Core Features
 
-1. **Install XAMPP** (or your preferred local server) and start the **Apache** and **MySQL** services from the control panel.
-2. **Clone or Download** this repository.
-3. **Move the project** to your web server's root directory:
-   - For XAMPP, move the `turf` folder into `C:\xampp\htdocs\`.
-   - Your path should look like this: `C:\xampp\htdocs\turf`.
-4. **Setup the Database:**
-   - Open your web browser and go to `http://localhost/phpmyadmin`.
-   - Create a new database named `turf`.
-   - Select the newly created database and click the **Import** tab.
-   - Choose the `turf (1).sql` file located in the root of this project and click **Import**.
-5. **Database Configuration:**
-   - Open `config.php` and verify your database connection settings. By default, it uses `localhost`, `root`, and no password.
-   - *If your local MySQL setup has a password, update it here.*
-6. **Run the Project:**
-   - Open your browser and navigate to: `http://localhost/turf`
+*   **Role-Based Access Control:** Distinct interfaces and privileges for Customers, Turf Owners, and Administrators.
+*   **Customer Portal:** Allows users to browse available sports turfs, check real-time slot availability, make bookings, and view historical reservation data.
+*   **Owner Dashboard:** Empowers facility owners to register their turfs, define operational hours, create bookable slots, and monitor customer reservations.
+*   **Administrative Control:** Centralized dashboard for platform administrators to oversee user activity and turf listings.
+*   **Authentication & Security:** 
+    *   Standard email and password registration with secure hashing.
+    *   Third-party Single Sign-On (SSO) integration via Google OAuth 2.0.
+*   **Automated Notifications:** Integration with PHPMailer to dispatch transactional emails for account verification, password resets, and booking confirmations.
 
-## 🔐 Configuring Email & Google Login
+## Technology Stack
 
-To use the Google Login and Email Notification features locally, you need to provide your own API credentials. 
+*   **Frontend:** HTML5, CSS3, Vanilla JavaScript
+*   **Backend:** PHP
+*   **Database:** MySQL
+*   **External Libraries:** PHPMailer (Email), Google API Client (OAuth)
 
-**Email Configuration (PHPMailer):**
-- In `register.php`, `owner_register.php`, and `forgot_password.php`, locate the PHPMailer settings.
-- Replace `YOUR_EMAIL@gmail.com` with your actual Gmail address.
-- Replace `YOUR_APP_PASSWORD` with a generated **Google App Password** (Do not use your standard email password). 
-- *Note: Remember not to commit these credentials to GitHub!*
+## Setup and Installation
 
-**Google Login Configuration:**
-- In `google-callback.php`, replace `YOUR_GOOGLE_CLIENT_ID` and `YOUR_GOOGLE_CLIENT_SECRET` with credentials generated from your Google Cloud Console.
+### Prerequisites
+A local web server environment capable of running PHP and MySQL is required (e.g., XAMPP, WAMP, or MAMP).
 
-## 🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+### Deployment Steps
+
+1.  **Environment Preparation:** Start the Apache web server and MySQL database services via your local server control panel.
+2.  **Project Placement:** Clone or extract this repository into your web server's root directory. For XAMPP environments, this is typically `C:\xampp\htdocs\turf`.
+3.  **Database Initialization:**
+    *   Navigate to your local database management tool (e.g., `http://localhost/phpmyadmin`).
+    *   Create a new, empty database named `turf`.
+    *   Import the provided database schema and initial data by executing the `turf (1).sql` file located in the project root.
+4.  **Database Configuration:**
+    *   Open `config.php` in a text editor.
+    *   Ensure the database connection string matches your local environment credentials (default is `localhost`, user `root`, no password).
+
+## Environment Configuration
+
+Certain features require valid API credentials to function locally. These should be configured before testing the application.
+
+### Email Configuration (PHPMailer)
+Transactional emails require a valid SMTP configuration.
+1.  Locate the PHPMailer initialization blocks within `register.php`, `owner_register.php`, and `forgot_password.php`.
+2.  Replace the placeholder `YOUR_EMAIL@gmail.com` with a valid sender address.
+3.  Replace `YOUR_APP_PASSWORD` with a secure App Password generated from your email provider (do not use your primary account password).
+
+### Google Authentication
+1.  Navigate to the Google Cloud Console and generate OAuth 2.0 credentials for a Web Application.
+2.  Open `google-callback.php`.
+3.  Replace `YOUR_GOOGLE_CLIENT_ID` and `YOUR_GOOGLE_CLIENT_SECRET` with the credentials obtained from the Google Cloud Console.
+
+> **Note:** Ensure that sensitive credentials and API keys are never committed to public version control repositories. Use the provided `.gitignore` file to manage environment-specific configurations securely.
