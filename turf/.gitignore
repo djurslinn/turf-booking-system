@@ -1,0 +1,17 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Dependencies (if any were to be added)
+vendor/
+node_modules/
+
+# Ignore user uploads
+uploads/*
+!uploads/.gitkeep
+
+# Optional: Ignore environment files if you add them later
+.env

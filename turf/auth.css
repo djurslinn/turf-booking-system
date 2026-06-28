@@ -1,0 +1,145 @@
+/* TurfZone Auth Pages Styles - Updated */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif; /* TurfZone-like font */
+  background-image: url('images/login_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Form container */
+.auth-container {
+  background: rgba(30, 41, 59, 0.95);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 450px;
+  width: 100%;
+}
+
+/* Heading */
+.auth-container h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #a3e635;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Input fields */
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"],
+.auth-container input[type="number"],
+.auth-container input[type="tel"] {
+  width: 100%;
+  padding: 14px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.auth-container input::placeholder {
+  color: #cbd5e1;
+}
+
+.auth-container input:focus {
+  outline: 2px solid #22c55e;
+  background: #334155;
+}
+
+/* Buttons */
+.auth-container button,
+.auth-container input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.auth-container button:hover,
+.auth-container input[type="submit"]:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Links */
+.auth-container a {
+  color: #a3e635;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-container a:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}
+
+/* Back to home link */
+.auth-container .back-link {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.auth-container .back-link:hover {
+  color: #22c55e;
+  text-decoration: underline;
+}
+
+/* Error / success messages */
+.error-text {
+  color: #f87171;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.success-text {
+  color: #4ade80;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Forgot password link alignment */
+.auth-container .forgot-link {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.auth-container .forgot-link a {
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .auth-container {
+    padding: 30px 20px;
+  }
+}

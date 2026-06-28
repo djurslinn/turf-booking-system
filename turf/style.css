@@ -1,0 +1,169 @@
+/* === Reset & Global === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f0fdf4;
+  color: #2e3b2c;
+  line-height: 1.6;
+  padding-top: 70px; /* space for fixed navbar */
+}
+
+/* === Navbar === */
+.custom-navbar {
+  background-color: #285430; /* deep turf green */
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  display: none;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 1rem;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+/* === Hero === */
+.hero {
+  background: linear-gradient(120deg, #5c8a49, #7abf5a); /* turf shades */
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.btn-primary {
+  background-color: white;
+  color: #2d6a4f;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background-color: #e0f0e0;
+}
+
+/* === Sections === */
+.section {
+  padding: 60px 20px;
+}
+.alt-bg {
+  background-color: #eafbe4;
+}
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* === Grid === */
+.grid-3 {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.grid-3 > .card {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* === Card === */
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.text-center {
+  text-align: center;
+}
+
+/* === Footer === */
+.footer {
+  background-color: #285430;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+.footer a {
+  color: #b7e4c7;
+  text-decoration: none;
+}
+ .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+.btn-danger:hover {
+  background-color: #c0392b;
+}
